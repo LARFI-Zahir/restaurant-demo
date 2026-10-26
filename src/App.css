@@ -342,6 +342,35 @@ body {
   border-top: 1px solid #ede9e4;
 }
 
+.cart-totals-label-with-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.info-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.85rem;
+  color: #9aaba0;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.info-btn:hover {
+  color: #00c1b2;
+}
+
+.service-fee-info {
+  font-size: 0.78rem;
+  color: #6b7c71;
+  background: #f8f4ef;
+  border-radius: 4px;
+  padding: 8px 10px;
+  margin-top: -4px;
+}
+
 .checkout-btn {
   width: 100%;
   padding: 15px;

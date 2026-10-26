@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
+import { computeOrderTotals } from "../pricing";
 
 function generateOrderNumber() {
   return "DL-" + Math.floor(10000 + Math.random() * 90000);
 }
 
 export default function PaymentModal({ cart, onClose, onSuccess }) {
-  const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-  const tax = subtotal * 0.2;
-  const total = subtotal + tax;
+  const { subtotal, deliveryFee, serviceFee, tax, total } = computeOrderTotals(cart);
 
   const [step, setStep] = useState("summary");
   const [orderNumber] = useState(generateOrderNumber);
@@ -72,7 +71,13 @@ export default function PaymentModal({ cart, onClose, onSuccess }) {
                 <span>Subtotal</span><span>€{subtotal.toFixed(2)}</span>
               </div>
               <div className="modal-totals-row">
-                <span>Tax (20%)</span><span>€{tax.toFixed(2)}</span>
+                <span>Delivery fee</span><span>€{deliveryFee.toFixed(2)}</span>
+              </div>
+              <div className="modal-totals-row">
+                <span>Service fee</span><span>€{serviceFee.toFixed(2)}</span>
+              </div>
+              <div className="modal-totals-row">
+                <span>Tax</span><span>€{tax.toFixed(2)}</span>
               </div>
               <div className="modal-totals-row modal-totals-total">
                 <span>Total</span><span>€{total.toFixed(2)}</span>
